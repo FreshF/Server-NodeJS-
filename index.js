@@ -7,11 +7,15 @@ io.on('connection', function(socket) {
 
     socket.emit('registerGame')
 
-    socket.on('hello', function() {
-        console.log('Yo wazuuup!')
+    socket.emit('registerApp')
+
+    socket.on('registeredGame', function() {
+        console.log('Game is registered')
     })
 
-
+    socket.on('registeredApp', function() {
+        console.log('App is registered')
+    })
 
     socket.on('disconnect', function() {
         console.log('Device has disconnected!')
