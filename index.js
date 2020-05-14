@@ -1,6 +1,6 @@
-var io = require('socket.io')(process.env.PORT || 5000);
-
 console.log('Server has started');
+
+var io = require('socket.io')(process.env.PORT || 52300);
 
 io.on('connection', function(socket) {
     console.log('Game has connected!');
