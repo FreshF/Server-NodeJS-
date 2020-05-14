@@ -6,9 +6,9 @@ io.on('connection', function(socket) {
     console.log('Device has connected!');
 
     socket.emit('registerGame')
-
     socket.emit('registerApp')
 
+    
     socket.on('registeredGame', function() {
         console.log('Game is registered')
     })
@@ -16,6 +16,8 @@ io.on('connection', function(socket) {
     socket.on('registeredApp', function() {
         console.log('App is registered')
     })
+
+
 
     socket.on('disconnect', function() {
         console.log('Device has disconnected!')
