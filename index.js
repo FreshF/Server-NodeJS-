@@ -3,7 +3,9 @@ console.log('Server has started');
 var io = require('socket.io')(process.env.PORT || 52300);
 
 io.on('connection', function(socket) {
-    console.log('Game has connected!');
+    console.log('Device has connected!');
+
+    socket.emit('registerGame')
 
     socket.on('hello', function() {
         console.log('Yo wazuuup!')
@@ -12,6 +14,6 @@ io.on('connection', function(socket) {
 
 
     socket.on('disconnect', function() {
-        console.log('Game has disconnected!')
+        console.log('Device has disconnected!')
     })
 });
