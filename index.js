@@ -1,14 +1,4 @@
 var io = require('socket.io')(process.env.PORT || 52300);
-// console.log('---Server has started---');
-// var express = require('express');
-// var appl = express();
-// appl.set('port', (process.env.PORT || 52300));
-//
-// var server = appl.listen(appl.get('port'), function() {
-//     console.log('Node app is running on port', appl.get('port'));
-// });
-
-//var io = require('socket.io')(server);
 
 let vr = null;
 let app = null;

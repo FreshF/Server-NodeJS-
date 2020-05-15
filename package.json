@@ -10,8 +10,6 @@
   "author": "Felix Pohlmann",
   "license": "ISC",
   "dependencies": {
-    "express": "^4.13.3",
-    "express-ws": "^0.2.6",
     "nodemon": "^2.0.3",
     "shortid": "^2.2.15",
     "socket.io": "^2.3.0"
