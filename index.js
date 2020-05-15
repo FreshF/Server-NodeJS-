@@ -8,7 +8,7 @@ var io = require('socket.io')(process.env.PORT || 52300);
 //     console.log('Node app is running on port', appl.get('port'));
 // });
 
-var io = require('socket.io')(server);
+//var io = require('socket.io')(server);
 
 let vr = null;
 let app = null;
