@@ -12,6 +12,7 @@ io.on('connection', function(socket) {
     socket.emit('start');
 
     socket.on('register', (message) => { // when register event received
+        console.log("got register");
         switch (message) { //check if its from the vr of app
             case 'vr': //when its from the vr
                 registerVrEvents(socket); //register vr handlers
