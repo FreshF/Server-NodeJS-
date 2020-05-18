@@ -9,6 +9,7 @@ io.on('connection', function(socket) {
     console.log('Connected');
 
     if (once) {
+        console.log("send start once")
         once = false;
         socket.emit('start');
     }
