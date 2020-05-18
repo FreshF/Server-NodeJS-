@@ -9,6 +9,7 @@ io.on('connection', function(socket) {
     console.log('Connected' + socket);
 
     if (gameRegistered == false) {
+        gameRegistered = true;
         socket.emit('start', "test data");
     }
     
