@@ -3,10 +3,16 @@ var io = require('socket.io')(process.env.PORT || 52300);
 let vr = null;
 let app = null;
 
-socket.emit('start');
+let once = true;
 
 io.on('connection', function(socket) {
     console.log('Connected');
+
+    if (once) {
+        once = false;
+        socket.emit('start');
+    }
+    
 
     //Send data from server to the client
     //socket.emit('register', {id: "1"});
