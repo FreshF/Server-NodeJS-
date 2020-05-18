@@ -3,14 +3,12 @@ var io = require('socket.io')(process.env.PORT || 52300);
 let vr = null;
 let app = null;
 
-let once = true;
+let gameRegistered = false;
 
 io.on('connection', function(socket) {
     console.log('Connected');
 
-    if (once) {
-        console.log("send start once")
-        once = false;
+    if (gameRegistered == false) {
         socket.emit('start');
     }
     
@@ -24,6 +22,7 @@ io.on('connection', function(socket) {
         switch (message) { //check if its from the vr of app
             case 'vr': //when its from the vr
                 registerVrEvents(socket); //register vr handlers
+                gameRegistered = true;
                 break;
             case 'app'://when its from app
                 registerAppEvents(socket); //register app handlers
