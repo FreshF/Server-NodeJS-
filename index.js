@@ -26,7 +26,7 @@ io.on('connection', function(socket) {
 
 
 
-                socket.emit('sendData', data);
+                socket.emit('sendData', "data");
                 break;
             case 'app'://when its from app
                 registerAppEvents(socket); //register app handlers
