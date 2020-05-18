@@ -3,12 +3,14 @@ var io = require('socket.io')(process.env.PORT || 52300);
 let vr = null;
 let app = null;
 
+socket.emit('start');
+
 io.on('connection', function(socket) {
     console.log('Connected');
 
     //Send data from server to the client
     //socket.emit('register', {id: "1"});
-    socket.emit('start');
+    //socket.emit('start');
 
     socket.on('register', (message) => { // when register event received
         console.log("got register");
