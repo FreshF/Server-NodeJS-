@@ -23,6 +23,10 @@ io.on('connection', function(socket) {
             case 'vr': //when its from the vr
                 registerVrEvents(socket); //register vr handlers
                 gameRegistered = true;
+
+
+
+                socket.emit('sendData', data);
                 break;
             case 'app'://when its from app
                 registerAppEvents(socket); //register app handlers
