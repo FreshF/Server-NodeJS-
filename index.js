@@ -48,9 +48,9 @@ function registerAppEvents(socket) {
 
     app.on('sendData', data => { //when event received from app
         console.log("sending data");
-        if(vr) { //if vr connected
+        //if(vr) { //if vr connected
             vr.emit('sendData', data); //pass message from app to the vr
-        }
+        //}
     });
 
     socket.on('disconnect', function() { //when app disconnects
