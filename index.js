@@ -34,10 +34,22 @@ io.on('connection', function(socket) {
 function registerAppEvents(socket) {
     app = socket; //set the socket to the app variable
     app.emit('event', 'app registered'); //send message that its registered
+
+
     app.on('event', message => { //when event received from app
         console.log("From app: " + message);
         if(vr) { //if vr connected
             vr.emit('event', message); //pass message from app to the vr
+        }
+    });
+
+
+
+
+    app.on('sendData', data => { //when event received from app
+        console.log("sending data");
+        if(vr) { //if vr connected
+            vr.emit('sendData', data); //pass message from app to the vr
         }
     });
 
