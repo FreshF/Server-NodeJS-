@@ -10,7 +10,7 @@ io.on('connection', function(socket) {
 
     if (gameRegistered == false) {
         gameRegistered = true;
-        socket.emit('start', {id: "1"});
+        socket.broadcast.emit('start', {id: "1"});
     }
     
 
