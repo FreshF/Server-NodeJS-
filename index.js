@@ -9,7 +9,7 @@ io.on('connection', function(socket) {
     console.log('Connected' + socket);
 
     if (gameRegistered == false) {
-        socket.emit('start');
+        socket.emit('start', "test data");
     }
     
 
@@ -75,8 +75,8 @@ function registerVrEvents(socket) {
         }
     });
 
-    socket.on('disconnect', function() { //when vr disconnects
+    /* socket.on('disconnect', function() { //when vr disconnects
         console.log("VR Disconnected");
         vr = null; //sets vr variable to null again
-    });
+    }); */
 }
