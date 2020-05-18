@@ -6,7 +6,7 @@ let app = null;
 let gameRegistered = false;
 
 io.on('connection', function(socket) {
-    console.log('Connected');
+    console.log('Connected' + socket);
 
     if (gameRegistered == false) {
         socket.emit('start');
@@ -26,7 +26,7 @@ io.on('connection', function(socket) {
 
 
 
-                socket.emit('sendData', "data");
+                //socket.emit('sendData', "data");
                 break;
             case 'app'://when its from app
                 registerAppEvents(socket); //register app handlers
@@ -68,6 +68,8 @@ function registerVrEvents(socket) {
     vr.emit('event', 'vr registered');//send message that its registered
     vr.on('event', message => {//when event received from vr
         console.log("From VR: " + message);
+        vr.emit('sendData', "data");
+
         if(app) { //if app connected
             app.emit('event', message);//pass message from vr to the app
         }
