@@ -26,7 +26,7 @@ io.on('connection', function(socket){
     //socket.emit('connect', dataJson);
 
 
-    socket.emit('connect', {"email":"some@email.com","pass":"1234"});
+    socket.emit('connect', {id:"some@email.com"});
     
     console.log("Ipaddress: " + ipAddress);
     console.log("DataJSON: " + dataJson);
