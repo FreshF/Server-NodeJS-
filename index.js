@@ -25,10 +25,13 @@ io.on('connection', function(socket){
     var dataJson = JSON.stringify(data);
     //socket.emit('connect', dataJson);
 
-    socket.emit('boop', {"email":"some@email.com","pass":"1234"});
+    //socket.emit('boop', {"email":"some@email.com","pass":"1234"});
     //socket.emit('connect', '12');
 
-    setAngle(socket, null);
+
+    socket.emit('setAngle', {angle: "12"});
+
+    //setAngle(socket, null);
     
     console.log("Ipaddress: " + ipAddress);
     console.log("DataJSON: " + dataJson);
@@ -46,10 +49,10 @@ io.on('connection', function(socket){
     });
 
 
-    //react to set event
+    /* //react to set event
     socket.on('setAngle', function(data){
         setAngle(socket, data);
-    });
+    }); */
 
     /* // relay message of client to all other clients
     socket.on('message', function(data){
