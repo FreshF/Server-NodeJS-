@@ -33,6 +33,11 @@ io.on('connection', function(socket){
     console.dir("DataJSON: " + dataJson);
 
     //react to connect event
+    socket.on('beep', function(data){
+        socket.emit('boop', {email:"some@email.com",pass:"1234"});
+    });
+
+    //react to connect event
     socket.on('connect', function(data){
         reactToConnectEvent(data);
     });
