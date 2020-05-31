@@ -25,8 +25,8 @@ io.on('connection', function(socket){
     var dataJson = JSON.stringify(data);
     //socket.emit('connect', dataJson);
 
-
-    socket.emit('connect', JSON.stringify('{angle: "12"}'));
+    socket.emit('event_name', {"email":"some@email.com","pass":"1234"});
+    //socket.emit('connect', '12');
     
     console.log("Ipaddress: " + ipAddress);
     console.log("DataJSON: " + dataJson);
