@@ -14,10 +14,12 @@ io.on('connection', function(socket){
 
     // tell all clients who has connected
     var ipAddress = socket.handshake.address;
-    io.emit('connect', {key: ipAddress, value: 'connected'});
+    io.emit('connect', {key: ipAddress});
 
     //react to connect event
     socket.on('connect', function(data){
+        console.log("Connect event");
+        console.dir(data);
         console.log(data.key + ' ' + data.value);
         //io.emit('message', {name: data.name, text: data.text});
     });
