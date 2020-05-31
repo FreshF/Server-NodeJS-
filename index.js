@@ -21,7 +21,7 @@ io.on('connection', function(socket){
 
     // tell all clients who has connected
     var ipAddress = socket.handshake.address;
-    io.emit('connect', {key: ipAddress});
+    socket.emit('connect', {key: ipAddress});
     console.dir("Ipaddress: " + ipAddress);
 
     //react to connect event
