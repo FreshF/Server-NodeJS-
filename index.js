@@ -2,50 +2,31 @@
 var websocketPort = 52300;
 
 // start websockets
-/* var io = require('socket.io').listen(websocketPort);
-console.log('Server is running on port ' + websocketPort); */
-
 var io = require('socket.io')(process.env.PORT || websocketPort);
-console.log('--- Server has started on port: '+websocketPort+' ---');
+console.log('--- Server is running on port: '+websocketPort+' ---');
 
-function reactToConnectEvent(data) {
-    console.log("Connect event");
-    console.dir(data);
-    console.log(data.key + ' ' + data.value);
-    //io.emit('message', {name: data.name, text: data.text});
+function Connected(data) {
+    console.log(data + " has connected");
 }
 
 //websocket communication
 io.on('connection', function(socket){
-    console.log('New connection');
-
-    // tell all clients who has connected
+    //Log who has connected
     var ipAddress = socket.handshake.address;
-    var data ='{"email":"some@email.com","pass":"1234"}';
-    var dataJson = JSON.stringify(data);
-    //socket.emit('connect', dataJson);
+    console.log(ipAddress + ' has connected');
 
-    //socket.emit('boop', {"email":"some@email.com","pass":"1234"});
-    //socket.emit('connect', '12');
-
-
+    //test emitting data
     socket.emit('setAngle', {angle: "12"});
 
-    //setAngle(socket, null);
-    
-    console.log("Ipaddress: " + ipAddress);
-    console.log("DataJSON: " + dataJson);
-    console.dir("DataJSON: " + dataJson);
-
-    //react to connect event
+    //react to beep event for testing with example data
     socket.on('beep', function(data){
-        console.log("BEEP");
+        console.log("beep");
         socket.emit('boop', {email:"some@email.com",pass:"1234"});
     });
 
     //react to connect event
-    socket.on('connect', function(data){
-        reactToConnectEvent(data);
+    socket.on('connected', function(data){
+        Connected(data);
     });
 
 
