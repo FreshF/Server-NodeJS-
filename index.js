@@ -31,6 +31,7 @@ io.on('connection', function(socket){
     });
 
     //----------CUSTOM EVENTS----------//
+    //when receiving set from the app check what to set and then set it
     socket.on('set', function(data){
         SetAngle(socket, data);
     });
@@ -49,10 +50,10 @@ function Connected(data) {
 }
 
 function SetAngle(socket, data) {
-    console.log("setAngle");
-
     //TODO: replace with actual angle
     data.angle = "12";
 
+
+    console.log("setAngle: " + data.angle);
     socket.emit('setAngle', {angle: data.angle});
 }
