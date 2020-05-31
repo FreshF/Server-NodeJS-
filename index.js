@@ -31,12 +31,15 @@ io.on('connection', function(socket){
     });
 
     //----------CUSTOM EVENTS----------//
-
+    socket.on('set', function(data){
+        SetAngle(socket, data);
+    });
     //----------CUSTOM EVENTS----------//
 
 
     //----------TESTING----------//
-    socket.emit('setAngle', {angle: "12"});
+    //socket.emit('setAngle', {angle: "12"});
+    SetAngle(socket, data);
     //----------TESTING----------//
 });
 
@@ -45,11 +48,11 @@ function Connected(data) {
     console.log(data + " has connected");
 }
 
-function setAngle(socket, data) {
-    console.log("set event");
+function SetAngle(socket, data) {
+    console.log("setAngle");
 
     //TODO: replace with actual angle
-    data = "12";
+    data.angle = "12";
 
-    socket.emit('boop', data);
+    socket.emit('setAngle', {angle: data.angle});
 }
