@@ -26,7 +26,7 @@ io.on('connection', function(socket){
     //socket.emit('connect', dataJson);
 
 
-    socket.emit('connect', "12");
+    socket.emit('connect', JSON.stringify('{angle: "12"}'));
     
     console.log("Ipaddress: " + ipAddress);
     console.log("DataJSON: " + dataJson);
