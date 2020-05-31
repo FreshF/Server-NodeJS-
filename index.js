@@ -7,6 +7,9 @@ console.log('Server is running on port ' + websocketPort);
 
 //websocket communication
 io.sockets.on('connection', function(socket){
+    console.log('New connection');
+
+
     // tell all clients who has connected
     var ipAddress = socket.handshake.address;
     io.sockets.emit('message', {name: ipAddress, text: 'joined'});
