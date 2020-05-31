@@ -27,6 +27,8 @@ io.on('connection', function(socket){
 
     socket.emit('boop', {"email":"some@email.com","pass":"1234"});
     //socket.emit('connect', '12');
+
+    setAngle();
     
     console.log("Ipaddress: " + ipAddress);
     console.log("DataJSON: " + dataJson);
@@ -34,12 +36,19 @@ io.on('connection', function(socket){
 
     //react to connect event
     socket.on('beep', function(data){
+        console.log("BEEP");
         socket.emit('boop', {email:"some@email.com",pass:"1234"});
     });
 
     //react to connect event
     socket.on('connect', function(data){
         reactToConnectEvent(data);
+    });
+
+
+    //react to set event
+    socket.on('setAngle', function(data){
+        setAngle(data);
     });
 
     /* // relay message of client to all other clients
@@ -56,3 +65,14 @@ io.on('connection', function(socket){
         console.log("Disconnected");
     });
 });
+
+
+function setAngle(data) {
+    console.log("set event");
+
+    //replace with actual angle
+    data = "12";
+
+
+    socket.emit('boop', data);
+}
