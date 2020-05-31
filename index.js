@@ -32,14 +32,15 @@ io.on('connection', function(socket){
 
     //----------CUSTOM EVENTS----------//
     //when receiving set from the app check what to set and then set it
-    socket.on('set', function(data){
+    //TODO: from ionic emit with eventname: 'SetAngle' & data: the angle as a string
+    socket.on('SetAngle', function(data){
         SetAngle(socket, data);
     });
     //----------CUSTOM EVENTS----------//
 
 
     //----------TESTING----------//
-    //socket.emit('setAngle', {angle: "12"});
+    //TODO: replace with actual angle and dont execute like this but only after event from app
     SetAngle(socket, "12");
     //----------TESTING----------//
 });
@@ -50,10 +51,6 @@ function Connected(data) {
 }
 
 function SetAngle(socket, data) {
-    //TODO: replace with actual angle
-    //data = "12";
-
-
     console.log("setAngle: " + data);
     socket.emit('setAngle', {angle: data});
 }
