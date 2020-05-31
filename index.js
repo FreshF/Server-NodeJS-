@@ -1,22 +1,21 @@
 //port
 var websocketPort = 52300;
 
-// start websockets
+//start websockets
 var io = require('socket.io')(process.env.PORT || websocketPort);
 console.log('--- Server is running on port: '+websocketPort+' ---');
 
-function Connected(data) {
-    console.log(data + " has connected");
-}
-
 //websocket communication
 io.on('connection', function(socket){
-    //Log who has connected
+    //log who has connected
     var ipAddress = socket.handshake.address;
-    console.log(ipAddress + ' has connected');
+    console.log(ipAddress + ' connected');
 
-    //test emitting data
-    socket.emit('setAngle', {angle: "12"});
+    //react to connect event (which gets sent after receiving 'open')
+    //TODO: remove at the end
+    socket.on('connected', function(data){
+        Connected(data);
+    });
 
     //react to beep event for testing with example data
     socket.on('beep', function(data){
@@ -24,39 +23,33 @@ io.on('connection', function(socket){
         socket.emit('boop', {email:"some@email.com",pass:"1234"});
     });
 
-    //react to connect event
-    socket.on('connected', function(data){
-        Connected(data);
-    });
-
-
-    /* //react to set event
-    socket.on('setAngle', function(data){
-        setAngle(socket, data);
-    }); */
-
-    /* // relay message of client to all other clients
-    socket.on('message', function(data){
-        console.log('Received message ');
-        console.log('New message: ' + data);
-        io.sockets.emit('message', {name: data.name, text: data.text});
-    }); */
-
-    // tell all clients who has disconnected
+    //tell all clients who has disconnected
     socket.on('disconnect', function(){
         //io.emit('message', {name: ipAddress, text: 'left'});
-        //console.log('client [' + ipAddress + '] disconnected');
-        console.log("Disconnected");
+        console.log('Client [' + ipAddress + '] disconnected');
+        //console.log("Disconnected");
     });
+
+    //----------CUSTOM EVENTS----------//
+
+    //----------CUSTOM EVENTS----------//
+
+
+    //----------TESTING----------//
+    socket.emit('setAngle', {angle: "12"});
+    //----------TESTING----------//
 });
 
+//Log the received data (who has connected)
+function Connected(data) {
+    console.log(data + " has connected");
+}
 
 function setAngle(socket, data) {
     console.log("set event");
 
-    //replace with actual angle
+    //TODO: replace with actual angle
     data = "12";
-
 
     socket.emit('boop', data);
 }
