@@ -40,7 +40,7 @@ io.on('connection', function(socket){
 
     //----------TESTING----------//
     //socket.emit('setAngle', {angle: "12"});
-    SetAngle(socket, data);
+    SetAngle(socket, "12");
     //----------TESTING----------//
 });
 
@@ -51,9 +51,9 @@ function Connected(data) {
 
 function SetAngle(socket, data) {
     //TODO: replace with actual angle
-    data.angle = "12";
+    //data = "12";
 
 
-    console.log("setAngle: " + data.angle);
-    socket.emit('setAngle', {angle: data.angle});
+    console.log("setAngle: " + data);
+    socket.emit('setAngle', {angle: data});
 }
