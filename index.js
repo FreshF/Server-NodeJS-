@@ -1,10 +1,6 @@
 //port
 var websocketPort = 52300;
 
-// start websockets
-/* var io = require('socket.io').listen(websocketPort);
-console.log('Server is running on port ' + websocketPort); */
-
 var io = require('socket.io')(process.env.PORT || websocketPort);
 console.log('--- Server has started on port: '+websocketPort+' ---');
 
@@ -14,9 +10,9 @@ io.on('connection', function(socket){
 
 
     // tell all clients who has connected
-    var ipAddress = socket.handshake.address;
+    /* var ipAddress = socket.handshake.address;
     io.sockets.emit('message', {name: ipAddress, text: 'joined'});
-    console.log('New connection from ' + ipAddress);
+    console.log('New connection from ' + ipAddress); */
 
     /* // relay message of client to all other clients
     socket.on('message', function(data){
