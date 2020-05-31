@@ -8,6 +8,13 @@ console.log('Server is running on port ' + websocketPort); */
 var io = require('socket.io')(process.env.PORT || websocketPort);
 console.log('--- Server has started on port: '+websocketPort+' ---');
 
+function reactToConnectEvent(data) {
+    console.log("Connect event");
+    console.dir(data);
+    console.log(data.key + ' ' + data.value);
+    //io.emit('message', {name: data.name, text: data.text});
+}
+
 //websocket communication
 io.on('connection', function(socket){
     console.log('New connection');
@@ -15,13 +22,11 @@ io.on('connection', function(socket){
     // tell all clients who has connected
     var ipAddress = socket.handshake.address;
     io.emit('connect', {key: ipAddress});
+    console.dir("Ipaddress: " + ipAddress);
 
     //react to connect event
     socket.on('connect', function(data){
-        console.log("Connect event");
-        console.dir(data);
-        console.log(data.key + ' ' + data.value);
-        //io.emit('message', {name: data.name, text: data.text});
+        reactToConnectEvent(data);
     });
 
     /* // relay message of client to all other clients
