@@ -21,8 +21,12 @@ io.on('connection', function(socket){
 
     // tell all clients who has connected
     var ipAddress = socket.handshake.address;
-    socket.emit('connect', {key: ipAddress});
-    console.dir("Ipaddress: " + ipAddress);
+    //var data ='{"email":"some@email.com","pass":"1234"}';
+    var dataJson = JSON.stringify(ipAddress);
+    socket.emit('connect', {"data":dataJson});
+    
+    console.log("Ipaddress: " + ipAddress);
+    console.log("DataJSON: " + dataJson);
 
     //react to connect event
     socket.on('connect', function(data){
