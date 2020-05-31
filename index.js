@@ -28,7 +28,7 @@ io.on('connection', function(socket){
     socket.emit('boop', {"email":"some@email.com","pass":"1234"});
     //socket.emit('connect', '12');
 
-    setAngle();
+    setAngle(socket, null);
     
     console.log("Ipaddress: " + ipAddress);
     console.log("DataJSON: " + dataJson);
@@ -48,7 +48,7 @@ io.on('connection', function(socket){
 
     //react to set event
     socket.on('setAngle', function(data){
-        setAngle(data);
+        setAngle(socket, data);
     });
 
     /* // relay message of client to all other clients
@@ -67,7 +67,7 @@ io.on('connection', function(socket){
 });
 
 
-function setAngle(data) {
+function setAngle(socket, data) {
     console.log("set event");
 
     //replace with actual angle
