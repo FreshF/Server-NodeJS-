@@ -23,7 +23,7 @@ io.on('connection', function(socket){
     var ipAddress = socket.handshake.address;
     //var data ='{"email":"some@email.com","pass":"1234"}';
     var dataJson = JSON.stringify(ipAddress);
-    socket.emit('connect', {"data":dataJson});
+    socket.emit('connect', dataJson);
     
     console.log("Ipaddress: " + ipAddress);
     console.log("DataJSON: " + dataJson);
