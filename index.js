@@ -11,7 +11,7 @@ io.on('connection', function(socket){
     var ipAddress = socket.handshake.address;
     console.log(ipAddress + ' connected');
 
-    //react to connect event (which gets sent after receiving 'open')
+    //react to connect event (which gets sent from unity after receiving default 'open')
     //TODO: remove at the end
     socket.on('connected', function(data){
         Connected(data);
@@ -25,7 +25,7 @@ io.on('connection', function(socket){
 
     //tell all clients who has disconnected
     socket.on('disconnect', function(){
-        //io.emit('message', {name: ipAddress, text: 'left'});
+        //io.emit('disconnected', {name: ipAddress, text: 'text'});
         console.log('Client [' + ipAddress + '] disconnected');
         //console.log("Disconnected");
     });
@@ -34,6 +34,7 @@ io.on('connection', function(socket){
     //when receiving set from the app check what to set and then set it
     //TODO: from ionic emit with eventname: 'SetAngle' & data: the angle as a string
     socket.on('SetAngle', function(data){
+        console.log("Setting angle: " + data);
         SetAngle(socket, data);
     });
     //----------CUSTOM EVENTS----------//
@@ -41,7 +42,7 @@ io.on('connection', function(socket){
 
     //----------TESTING----------//
     //TODO: replace with actual angle and dont execute like this but only after event from app
-    SetAngle(socket, "12");
+    //SetAngle(socket, "12");
     //----------TESTING----------//
 });
 
@@ -51,6 +52,6 @@ function Connected(data) {
 }
 
 function SetAngle(socket, data) {
-    console.log("setAngle: " + data);
+    console.log("SetAngle: " + data);
     socket.emit('setAngle', {angle: data});
 }
