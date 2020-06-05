@@ -7,73 +7,60 @@ console.log('--- Server is running on port: '+websocketPort+' ---');
 
 //websocket communication
 io.on('connection', function(socket){
-    //log who has connected
+    //log the ip of who has connected
     var ipAddress = socket.handshake.address;
-    console.log(ipAddress + ' connected');
+    console.log('Client [' + ipAddress + '] connected');
 
-    //react to connect event (which gets sent from unity after receiving default 'open')
-    //TODO: remove at the end
+    //*CONNECTED EVENT
+    //react to connect event (which gets sent from unity/app after receiving default 'open')
+    //TODO: remove at the end because the ip should be enough?
     socket.on('connected', function(data){
-        Connected(data);
+        //log who has connected
+        console.log(data + " has connected");
     });
 
+    //*BEEP EVENT
     //react to beep event for testing with example data
     socket.on('beep', function(data){
         console.log("beep");
         socket.emit('boop', {email:"some@email.com",pass:"1234"});
     });
 
-    //tell all clients who has disconnected
+    //*DISCONNECTED EVENT
+    //on disconnecting
     socket.on('disconnect', function(){
-        //io.emit('disconnected', {name: ipAddress, text: 'text'});
+        //log who has disconnected
         console.log('Client [' + ipAddress + '] disconnected');
-        //console.log("Disconnected");
+
+        //TODO: tell all clients who has disconnected?
+        //io.emit('disconnected', {name: ipAddress, text: 'text'}); //emits to all sockets & itself as well
     });
 
-    //----------CUSTOM EVENTS----------//
-    //when receiving set from the app check what to set and then set it
-    //TODO: from ionic emit with eventname: 'SetAngle' & data: the angle as a string
+
+    //------------------------------------CUSTOM------------------------------------//
+
+    
+    //----------CUSTOM EVENTS FROM APP----------//
+    //*SET ANGLE EVENT
+    //on receiving SetAngle from the app
     socket.on('SetAngle', function(data){
+        //log it
         console.log("Setting angle: " + data);
-        //SetAngle(socket, data);
 
-        //{email:"some@email.com",pass:"1234"}
-
-        //WORKS
-        //io.sockets.emit('setAngle', {email:"some@email.com",pass:"1234"});
-
-        //socket.broadcast.emit('setAngle', {email:"some@email.com",pass:"1234"});
-
-        socket.broadcast.emit('setAngle', {data:data});
-
-
-
-        //io.sockets.emit('setAngle', data);
-        //socket.broadcast.emit('setAngle', data);
-        //socket.emit('setAngle', data);
+        //broadcast it to all other sockets but self
+        socket.broadcast.emit('SetAngle', {data:data});
     });
-    //----------CUSTOM EVENTS----------//
+    //----------CUSTOM EVENTS FROM APP----------//
 
-
+    //----------CUSTOM EVENTS FROM UNITY----------//
+    //*ADJUSTED ANGLE EVENT
+    //on receiving AdjustedAngle from unity
     socket.on('AdjustedAngle', function(data){
+        //log it
         console.log(data);
 
+        //broadcast it to all other sockets but self
         socket.broadcast.emit('AdjustedAngle', {data:data});
     });
-
-    //----------TESTING----------//
-    //TODO: replace with actual angle and dont execute like this but only after event from app
-    //SetAngle(socket, "12");
-    //----------TESTING----------//
+    //----------CUSTOM EVENTS FROM UNITY----------//
 });
-
-//Log the received data (who has connected)
-function Connected(data) {
-    console.log("Connected event");
-    console.log(data + " has connected");
-}
-
-function SetAngle(socket, data) {
-    console.log("SetAngle: " + data);
-    socket.emit('setAngle', data);
-}
