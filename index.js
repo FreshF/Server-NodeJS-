@@ -55,6 +55,12 @@ io.on('connection', function(socket){
     //----------CUSTOM EVENTS----------//
 
 
+    socket.on('AdjustedAngle', function(data){
+        console.log("Adjusted Angle for" + data);
+
+        socket.broadcast.emit('AdjustedAngle', {data:data});
+    });
+
     //----------TESTING----------//
     //TODO: replace with actual angle and dont execute like this but only after event from app
     //SetAngle(socket, "12");
