@@ -56,7 +56,7 @@ io.on('connection', function(socket){
 
 
     socket.on('AdjustedAngle', function(data){
-        console.log("Adjusted Angle for " + data);
+        console.log(data);
 
         socket.broadcast.emit('AdjustedAngle', {data:data});
     });
