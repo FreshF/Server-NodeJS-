@@ -35,7 +35,10 @@ io.on('connection', function(socket){
     //TODO: from ionic emit with eventname: 'SetAngle' & data: the angle as a string
     socket.on('SetAngle', function(data){
         console.log("Setting angle: " + data);
-        SetAngle(socket, data);
+        //SetAngle(socket, data);
+
+
+        socket.emit('setAngle', data);
     });
     //----------CUSTOM EVENTS----------//
 
@@ -54,5 +57,5 @@ function Connected(data) {
 
 function SetAngle(socket, data) {
     console.log("SetAngle: " + data);
-    socket.emit('setAngle', {angle: data});
+    socket.emit('setAngle', data);
 }
