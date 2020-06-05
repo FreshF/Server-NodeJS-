@@ -39,9 +39,12 @@ io.on('connection', function(socket){
 
         //{email:"some@email.com",pass:"1234"}
 
+        //WORKS
         //io.sockets.emit('setAngle', {email:"some@email.com",pass:"1234"});
 
-        socket.broadcast.emit('setAngle', {email:"some@email.com",pass:"1234"});
+        //socket.broadcast.emit('setAngle', {email:"some@email.com",pass:"1234"});
+
+        socket.broadcast.emit('setAngle', {data:data});
 
 
 
