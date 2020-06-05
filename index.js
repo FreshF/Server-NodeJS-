@@ -48,6 +48,7 @@ io.on('connection', function(socket){
 
 //Log the received data (who has connected)
 function Connected(data) {
+    console.log("Connected event");
     console.log(data + " has connected");
 }
 
