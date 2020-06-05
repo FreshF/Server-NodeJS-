@@ -37,8 +37,9 @@ io.on('connection', function(socket){
         console.log("Setting angle: " + data);
         //SetAngle(socket, data);
 
-
-        socket.emit('setAngle', data);
+        io.sockets.emit('setAngle', data);
+        //socket.broadcast.emit('setAngle', data);
+        //socket.emit('setAngle', data);
     });
     //----------CUSTOM EVENTS----------//
 
