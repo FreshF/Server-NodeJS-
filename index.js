@@ -86,7 +86,7 @@ io.on('connection', function(socket){
         //on receiving ToggleMirror from the app
         socket.on('ToggleMirror', function(data){
             //log it
-            console.log("Toggled Mirror: " + data);
+            console.log("Toggle Mirror: " + data);
 
             //broadcast it to all other sockets but self
             socket.broadcast.emit('ToggleMirror', {data:data});
@@ -96,7 +96,7 @@ io.on('connection', function(socket){
         //on receiving ToggleSlope from the app
         socket.on('ToggleSlope', function(data){
             //log it
-            console.log("Toggled Slope: " + data);
+            console.log("Toggle Slope: " + data);
 
             //broadcast it to all other sockets but self
             socket.broadcast.emit('ToggleSlope', {data:data});
@@ -106,7 +106,7 @@ io.on('connection', function(socket){
         //on receiving ToggleSticks from the app
         socket.on('ToggleSticks', function(data){
             //log it
-            console.log("Toggled Sticks: " + data);
+            console.log("Toggle Sticks: " + data);
 
             //broadcast it to all other sockets but self
             socket.broadcast.emit('ToggleSticks', {data:data});
