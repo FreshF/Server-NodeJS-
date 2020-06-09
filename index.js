@@ -21,7 +21,7 @@ io.on('connection', function(socket){
         
         
         
-        socket.broadcast.emit('ToggleMirror', {data:data});
+        socket.broadcast.emit('ToggleMirror');
     });
 
     //*BEEP EVENT
