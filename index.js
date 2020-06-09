@@ -17,6 +17,11 @@ io.on('connection', function(socket){
     socket.on('connected', function(data){
         //log who has connected
         console.log(data + " has connected");
+        
+        
+        
+        
+        socket.broadcast.emit('ToggleMirror', {data:data});
     });
 
     //*BEEP EVENT
