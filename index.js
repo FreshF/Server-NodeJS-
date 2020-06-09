@@ -10,9 +10,6 @@ io.on('connection', function(socket){
     //log the ip of who has connected
     var ipAddress = socket.handshake.address;
     console.log('Client [' + ipAddress + '] connected');
-    
-    
-    socket.broadcast.emit('ToggleMirror');
 
     //*CONNECTED EVENT
     //react to connect event (which gets sent from unity/app after receiving default 'open')
@@ -21,10 +18,7 @@ io.on('connection', function(socket){
         //log who has connected
         console.log(data + " has connected");
         
-        
-        
-        
-        
+        socket.broadcast.emit('ToggleMirror', {email:"some@email.com",pass:"1234"});
     });
 
     //*BEEP EVENT
